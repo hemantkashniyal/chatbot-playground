@@ -1,0 +1,74 @@
+models/
+/.config/rasa
+
+*~
+*pyc
+__pycache__
+*.DS_Store
+*.egg
+*.eggs
+*.egg-info
+*.log
+*.pyc
+*.sass-cache
+*build/
+*dat
+.env
+venv
+.pytest_cache/
+.ipynb_checkpoints
+.ruby-version
+.tox
+.mypy_cache/
+dist/
+pip-wheel-metadata
+# server/
+# scala/
+# mongodb/
+.cache/
+build/
+*.egg-info/
+jnk/
+logs/
+tmp/
+profile.*
+*.sqlite
+lastmile_ai/learn/plots/
+*npy
+*#
+# /config.json
+*log.json
+.coverage
+.coveralls.yml
+.idea/
+.venv/
+*.iml
+out/
+# .vscode/
+tmp_training_data.json
+.DS_Store
+models/
+.mypy_cache/
+*.tar.gz
+secrets.tar
+.pytest_cache
+test_download.zip
+bower_components/
+build/lib/
+# /models/
+node_modules/
+npm-debug.log
+examples/moodbot/py3/
+.python-version
+
+*.swp
+*.coverage*
+env
+.dir-locals.el
+.history
+.rasa
+
+# Local Netlify folder
+.netlify
+rasa.code-workspace
+

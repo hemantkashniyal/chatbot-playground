@@ -1,0 +1,4 @@
+[submodule "bot-client"]
+	path = bot-client
+	url = https://github.com/JiteshGaikwad/Chatbot-Widget
+	branch = Widget2.0
