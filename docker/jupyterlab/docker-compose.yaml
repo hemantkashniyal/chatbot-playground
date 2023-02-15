@@ -3,6 +3,10 @@ version: '3'
 services:
   jupyterlab:
     image: jupyter/all-spark-notebook
+    container_name: jupyterlab
+    hostname: jupyterlab
+    networks:
+      - jupyter-network
     ports:
       - "28888:8888"
     environment:
@@ -12,4 +16,11 @@ services:
     user: root
     volumes:
       - ../../notebooks:/home/jovyan/workspace
+      - jupyterlab-cache:/home/jovyan/.cache
     entrypoint: start-notebook.sh --NotebookApp.token='' --NotebookApp.password='' --NotebookApp.allow_origin='*' --ip 0.0.0.0
+
+volumes:
+  jupyterlab-cache:
+
+networks:
+  jupyter-network:

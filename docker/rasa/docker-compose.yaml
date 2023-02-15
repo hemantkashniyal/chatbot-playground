@@ -3,7 +3,8 @@ version: '3.0'
 services:
   rasa:
     image: rasa/rasa:latest-full
-    networks: ['rasa-network']
+    networks:
+    - rasa-network
     ports:
     - "5005:5005"
     volumes:
@@ -19,7 +20,8 @@ services:
 
   action_server:
     image: rasa/rasa-sdk:latest
-    networks: ['rasa-network']
+    networks:
+    - rasa-network
     ports:
     - "5055:5055"
     volumes:
@@ -27,14 +29,17 @@ services:
 
   duckling:
     image: rasa/duckling:latest
-    networks: ['rasa-network']
+    networks:
+    - rasa-network
     ports:
     - "8000:8000"
 
   redis:
     image: redis:6.2-alpine
     restart: always
-    networks: ['rasa-network', 'admin-network']
+    networks:
+    - rasa-network
+    - admin-network
     ports:
       - '6379:6379'
     command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
@@ -53,7 +58,8 @@ services:
       REDIS_PASSWORD: eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
       HTTP_USER: root
       HTTP_PASSWORD: root
-    networks: ['admin-network']
+    networks:
+    - admin-network
     ports:
     - "8081:8081"
 
