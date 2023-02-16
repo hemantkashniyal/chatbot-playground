@@ -11,7 +11,7 @@ pythonpath = [
   ".",
   "../*"
 ]
-# addopts = "--cov --cov-fail-under=100 --cov-report html:'../../coverage/packages/common/html' --cov-report xml:'../../coverage/packages/common/coverage.xml' --junitxml='../../reports/packages/common/unittests/junit.xml' --html='../../reports/packages/common/unittests/html/index.html'"
+addopts = "--cov --cov-fail-under=100 --cov-report html:'../../coverage/packages/common/html' --cov-report xml:'../../coverage/packages/common/coverage.xml' --junitxml='../../reports/packages/common/unittests/junit.xml' --html='../../reports/packages/common/unittests/html/index.html'"
 
 [tool.poetry]
 name = "chatbot-common"
@@ -27,6 +27,21 @@ readme = 'README.md'
   [tool.poetry.dependencies]
   python = "3.11.*"
 
+  [tool.poetry.group.dev.dependencies]
+  flake8 = "4.0.1"
+  flake8-isort = "4.1.1"
+  flake8-print = "5.0.0"
+  flake8-pytest-style = "1.6.0"
+  flake8-docstrings = "1.6.0"
+  flake8-type-checking = "2.0.6"
+  autopep8 = "1.5.7"
+  pytest = "7.1.2"
+  pytest-env = "0.6.2"
+  pytest-cov = "3.0.0"
+  pytest-html = "3.1.1"
+  pytest-sugar = "0.9.5"
+  tomli = "1.2.2"
+  tox = "3.23.1"
 
 
 [build-system]
