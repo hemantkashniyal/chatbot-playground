@@ -1,0 +1,43 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": false,
+    "source.fixAll": false,
+    "source.fixAll.eslint": false
+  },
+  "cSpell.words": [
+    "buildable",
+    "genhtml",
+    "hoppr",
+    "lcov",
+    "lcovonly",
+    "middlewares",
+    "myapp",
+    "nrwl",
+    "opentelemetry",
+    "zipkin"
+  ],
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "js/ts.implicitProjectConfig.experimentalDecorators": true,
+  "search.exclude": {
+    "**/build/*": true,
+    "**/dist/*": true,
+    "**/tmp/*": true,
+    "**/coverage/*": true,
+    "**/node_modules/*": true
+  },
+  "java.configuration.updateBuildConfiguration": "interactive",
+  "compile-hero.disable-compile-files-on-did-save-code": false,
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
+}

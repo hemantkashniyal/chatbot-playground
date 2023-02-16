@@ -1,0 +1,34 @@
+[tool.coverage.run]
+branch = true
+source = [ "chatbot_common" ]
+
+[tool.coverage.report]
+exclude_lines = ['if TYPE_CHECKING:']
+show_missing = true
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".",
+  "../*"
+]
+# addopts = "--cov --cov-fail-under=100 --cov-report html:'../../coverage/packages/common/html' --cov-report xml:'../../coverage/packages/common/coverage.xml' --junitxml='../../reports/packages/common/unittests/junit.xml' --html='../../reports/packages/common/unittests/html/index.html'"
+
+[tool.poetry]
+name = "chatbot-common"
+version = "1.0.0"
+description = "Common Library"
+authors = [ ]
+license = 'Proprietary'
+readme = 'README.md'
+
+  [[tool.poetry.packages]]
+  include = "chatbot_common"
+
+  [tool.poetry.dependencies]
+  python = "3.11.*"
+
+
+
+[build-system]
+requires = ["poetry-core==1.1.0"]
+build-backend = "poetry.core.masonry.api"

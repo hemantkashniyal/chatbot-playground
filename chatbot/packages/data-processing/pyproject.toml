@@ -1,0 +1,37 @@
+[tool.coverage.run]
+branch = true
+source = [ "chatbot_data_processing" ]
+
+[tool.coverage.report]
+exclude_lines = [ "if TYPE_CHECKING:" ]
+show_missing = true
+
+[tool.pytest.ini_options]
+pythonpath = [
+  ".",
+  "../*"
+]
+# addopts = "--cov --cov-fail-under=100 --cov-report html:'../../coverage/packages/chatbot_data_processing/html' --cov-report xml:'../../coverage/packages/chatbot_data_processing/coverage.xml' --junitxml='../../reports/packages/chatbot_data_processing/unittests/junit.xml' --html='../../reports/packages/chatbot_data_processing/unittests/html/index.html'"
+
+[tool.poetry]
+name = "chatbot-data-processing"
+version = "1.0.0"
+description = "Data Processing Library"
+authors = [ ]
+license = "Proprietary"
+readme = "README.md"
+
+  [[tool.poetry.packages]]
+  include = "chatbot_data_processing"
+
+  [tool.poetry.dependencies]
+  python = "3.11.*"
+  pendulum = "^2.1.2"
+
+    [tool.poetry.dependencies.chatbot-common]
+    path = "../common"
+    develop = true
+
+[build-system]
+requires = [ "poetry-core==1.1.0" ]
+build-backend = "poetry.core.masonry.api"
