@@ -11,7 +11,7 @@ pythonpath = [
   ".",
   "../*"
 ]
-addopts = "--cov --cov-report html:'../../coverage/packages/chatbot_data_processing/html' --cov-report xml:'../../coverage/packages/chatbot_data_processing/coverage.xml' --junitxml='../../reports/packages/chatbot_data_processing/unittests/junit.xml' --html='../../reports/packages/chatbot_data_processing/unittests/html/index.html'"
+addopts = "--cov --cov-fail-under=100 --cov-report html:'../../coverage/packages/chatbot_data_processing/html' --cov-report xml:'../../coverage/packages/chatbot_data_processing/coverage.xml' --junitxml='../../reports/packages/chatbot_data_processing/unittests/junit.xml' --html='../../reports/packages/chatbot_data_processing/unittests/html/index.html'"
 
 [tool.poetry]
 name = "chatbot-data-processing"
