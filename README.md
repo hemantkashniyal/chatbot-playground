@@ -45,18 +45,18 @@
 - run `yarn install`
 - run following command to create an application
   ```
-  npx nx generate @nxlv/python:project <app-name> --type application --description=<app-description> --packageName=<app-package-name> --moduleName=<app-module-name>
+  npx nx generate @nxlv/python:project <app-name> --type application --addDevDependencies --description=<app-description> --packageName=<app-package-name> --moduleName=<app-module-name>
   ```
   e.g.
   ```
-  nx generate @nxlv/python:project chatbot_backend --type application --description='Chatbot Backend' --packageName=chatbot-backend --moduleName=chatbot_backend  --dry-run
+  nx generate @nxlv/python:project chatbot_backend --type application --addDevDependencies --description='Chatbot Backend' --packageName=chatbot-backend --moduleName=chatbot_backend  --dry-run
   ```
 - run following command to create a library
   ```
-  npx nx generate @nxlv/python:project <lib-name> --type library --description=<lib-description> --packageName=<lib-package-name> --moduleName=<lib-module-name>
+  npx nx generate @nxlv/python:project <lib-name> --type library --addDevDependencies --description=<lib-description> --packageName=<lib-package-name> --moduleName=<lib-module-name>
   ```
   e.g.
   ```
-  nx generate @nxlv/python:project data-processing --type library --description='Data Processing Library' --packageName=chatbot-data-processing --moduleName=chatbot_data_processing  --dry-run
+  nx generate @nxlv/python:project data-processing --type library --addDevDependencies --description='Data Processing Library' --packageName=chatbot-data-processing --moduleName=chatbot_data_processing  --dry-run
   ```
 - more can be found [here](https://betterprogramming.pub/poetry-python-nx-monorepo-5750d8627024)
