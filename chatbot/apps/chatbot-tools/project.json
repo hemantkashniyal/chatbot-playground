@@ -1,0 +1,92 @@
+{
+  "name": "chatbot-tools",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/chatbot-tools/chatbot_tools",
+  "targets": {
+    "docs": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pydoc-markdown -p chatbot_tools --render-toc > docs/source/api.md",
+        "cwd": "apps/chatbot-tools"
+      }
+    },
+    "lock": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "apps/chatbot-tools"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["apps/chatbot-tools/dist"],
+      "options": {
+        "outputPath": "apps/chatbot-tools/dist",
+        "publish": true,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": ["reports/apps/chatbot-tools/pylint.txt"],
+      "options": {
+        "outputFile": "reports/apps/chatbot-tools/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "nx:run-commands",
+      "outputs": [
+        "reports/apps/chatbot-tools/unittests",
+        "coverage/apps/chatbot-tools"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "apps/chatbot-tools"
+      }
+    },
+    "tox": {
+      "executor": "@nxlv/python:tox",
+      "outputs": [
+        "reports/apps/chatbot-tools/unittests",
+        "coverage/apps/chatbot-tools"
+      ],
+      "options": {
+        "silent": false,
+        "args": ""
+      }
+    },
+    "run": {
+      "executor": "nx:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "poetry run tools_cli {args.cmd}",
+        "cwd": "apps/chatbot-tools"
+      }
+    }
+  },
+  "tags": []
+}

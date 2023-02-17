@@ -1,0 +1,52 @@
+[tool.coverage.run]
+branch = true
+source = [ "chatbot_tools" ]
+
+[tool.coverage.report]
+exclude_lines = ['if TYPE_CHECKING:']
+show_missing = true
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-fail-under=100 --cov-report html:'../../coverage/apps/chatbot-tools/html' --cov-report xml:'../../coverage/apps/chatbot-tools/coverage.xml' --junitxml='../../reports/apps/chatbot-tools/unittests/junit.xml' --html='../../reports/apps/chatbot-tools/unittests/html/index.html'"
+
+[tool.poetry]
+name = "chatbot-tools"
+version = "1.0.0"
+description = "Chatbot Tools"
+authors = [ ]
+license = 'Proprietary'
+readme = 'README.md'
+
+[tool.poetry.scripts]
+tools_cli = "chatbot_tools.index:app"
+
+  [[tool.poetry.packages]]
+  include = "chatbot_tools"
+
+  [tool.poetry.dependencies]
+  python = "3.11.*"
+  typer = {extras = ["all"], version = "^0.7.0"}
+  scrapy = "^2.8.0"
+  extruct = "^0.14.0"
+
+
+  [tool.poetry.group.dev.dependencies]
+  flake8 = "4.0.1"
+  flake8-isort = "4.1.1"
+  flake8-print = "5.0.0"
+  flake8-pytest-style = "1.6.0"
+  flake8-docstrings = "1.6.0"
+  flake8-type-checking = "2.0.6"
+  autopep8 = "1.5.7"
+  pytest = "7.1.2"
+  pytest-env = "0.6.2"
+  pytest-cov = "3.0.0"
+  pytest-html = "3.1.1"
+  pytest-sugar = "0.9.5"
+  tomli = "1.2.2"
+  tox = "3.23.1"
+
+
+[build-system]
+requires = ["poetry-core==1.1.0"]
+build-backend = "poetry.core.masonry.api"

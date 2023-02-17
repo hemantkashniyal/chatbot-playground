@@ -2,6 +2,8 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "chatbot-backend": "apps/chatbot-backend",
+    "chatbot-tools": "apps/chatbot-tools",
     "common": "packages/common",
     "data-processing": "packages/data-processing"
   }
