@@ -1,47 +1,47 @@
-version: '3.0'
+version: "3.0"
 
 services:
   rasa:
     image: rasa/rasa:latest-full
     networks:
-    - rasa-network
+      - rasa-network
     ports:
-    - "5005:5005"
+      - "5005:5005"
     volumes:
-    - "../../rasa/:/app/"
+      - "../../rasa/:/app/"
     command:
-    - run
-    - --cors
-    - '*'
-    - --enable-api
-    - --debug
-    - --auth-token
-    - examplesecret
+      - run
+      - --cors
+      - "*"
+      - --enable-api
+      - --debug
+      - --auth-token
+      - examplesecret
 
   action_server:
     image: rasa/rasa-sdk:latest
     networks:
-    - rasa-network
+      - rasa-network
     ports:
-    - "5055:5055"
+      - "5055:5055"
     volumes:
-    - "../../rasa/actions:/app/actions"
+      - "../../rasa/actions:/app/actions"
 
   duckling:
     image: rasa/duckling:latest
     networks:
-    - rasa-network
+      - rasa-network
     ports:
-    - "8000:8000"
+      - "8000:8000"
 
   redis:
     image: redis:6.2-alpine
     restart: always
     networks:
-    - rasa-network
-    - admin-network
+      - rasa-network
+      - admin-network
     ports:
-      - '6379:6379'
+      - "6379:6379"
     command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
     volumes:
       - "./redis_data:/data"
@@ -59,9 +59,9 @@ services:
       HTTP_USER: root
       HTTP_PASSWORD: root
     networks:
-    - admin-network
+      - admin-network
     ports:
-    - "8081:8081"
+      - "8081:8081"
 
 networks:
   rasa-network: {}

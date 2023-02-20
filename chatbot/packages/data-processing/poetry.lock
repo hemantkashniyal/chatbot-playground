@@ -64,7 +64,7 @@ version = "1.0.0"
 description = "Common Library"
 category = "main"
 optional = false
-  python-versions = "3.11.*"
+  python-versions = ">=3.8,<3.10"
 files = []
 develop = true
 
@@ -144,6 +144,9 @@ files = [
     {file = "coverage-7.1.0-pp37.pp38.pp39-none-any.whl", hash = "sha256:755e89e32376c850f826c425ece2c35a4fc266c081490eb0a841e7c1cb0d3bda"},
     {file = "coverage-7.1.0.tar.gz", hash = "sha256:10188fe543560ec4874f974b5305cd1a8bdcfa885ee00ea3a03733464c4ca265"},
 ]
+
+[package.dependencies]
+tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.11.0a6\" and extra == \"toml\""}
 
 [package.extras]
 toml = ["tomli"]
@@ -725,5 +728,5 @@ test = ["covdefaults (>=2.2.2)", "coverage (>=7.1)", "coverage-enable-subprocess
 
 [metadata]
 lock-version = "2.0"
-  python-versions = "3.11.*"
-content-hash = "c2444f015e25e4945db84db349cffebcfa37421a846dedb4c4d91a3a31b1a7fb"
+  python-versions = ">=3.8,<3.10"
+content-hash = "0f2d9f426a03c713709456f5227fd8949fc15cce57b2a9859a83df18df4692b7"

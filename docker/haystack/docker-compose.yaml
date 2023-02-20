@@ -1,0 +1,82 @@
+version: "3"
+services:
+  haystack-api:
+    image: "deepset/haystack:cpu"
+    volumes:
+      - ./rest_api/rest_api/pipeline:/opt/pipelines
+    networks:
+      - app-network
+    ports:
+      - 8000:8000
+    restart: on-failure
+    environment:
+      - DOCUMENTSTORE_PARAMS_HOST=elasticsearch
+      - PIPELINE_YAML_PATH=/opt/pipelines/pipelines.haystack-pipeline.yml
+      - TOKENIZERS_PARALLELISM=false
+      # Uncomment the following line to customise how much time (in seconds) a worker can spend serving a request
+      # before it times out. This should include the time required to cache the models and setup the pipelines.
+
+      # - GUNICORN_CMD_ARGS="--timeout=3000"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.17.6"
+    networks:
+      - app-network
+    ports:
+      - 9200:9200
+    restart: on-failure
+    environment:
+      - discovery.type=single-node
+      - "ES_JAVA_OPTS=-Xms1024m -Xmx1024m"
+    healthcheck:
+      test: curl --fail http://localhost:9200/_cat/health || exit 1
+      interval: 10s
+      timeout: 1s
+      retries: 10
+
+  annotation_backend:
+    image: deepset/haystack-annotation:latest
+    environment:
+      DEFAULT_ADMIN_EMAIL: "example@example.com"
+      DEFAULT_ADMIN_PASSWORD: "DEMO_PASSWORD"
+      NODE_ENV: "production"
+      PROD_DB_HOSTNAME: "annotation_db"
+      PROD_DB_NAME: "databasename"
+      PROD_DB_USERNAME: "somesafeuser"
+      PROD_DB_PASSWORD: "somesafepassword"
+    ports:
+      - "7001:7001"
+    links:
+      - "annotation_db:database"
+    depends_on:
+      - annotation_db
+    networks:
+      - annotation-app-network
+    restart: unless-stopped
+
+  annotation_db:
+    image: "postgres:12"
+    environment:
+      POSTGRES_USER: "somesafeuser"
+      POSTGRES_PASSWORD: "somesafepassword"
+      POSTGRES_DB: "databasename"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - annotation-app-network
+    healthcheck:
+      test: "pg_isready --username=somesafeuser --dbname=databasename && psql --username=somesafeuser --list"
+      timeout: 3s
+      retries: 5
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+  annotation-app-network:
+    driver: bridge

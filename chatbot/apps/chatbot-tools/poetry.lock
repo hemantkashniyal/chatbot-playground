@@ -398,6 +398,9 @@ files = [
     {file = "coverage-7.1.0.tar.gz", hash = "sha256:10188fe543560ec4874f974b5305cd1a8bdcfa885ee00ea3a03733464c4ca265"},
 ]
 
+[package.dependencies]
+tomli = {version = "*", optional = true, markers = "python_full_version <= \"3.11.0a6\" and extra == \"toml\""}
+
 [package.extras]
 toml = ["tomli"]
 
@@ -1065,14 +1068,18 @@ files = [
 
 [[package]]
 name = "pydispatcher"
-version = "2.0.6"
-description = "Multi-Producer Multi-Consumer Observer Pattern for Python"
+version = "2.0.7"
+description = "Multi-producer multi-consumer in-memory signal dispatch system"
 category = "main"
 optional = false
 python-versions = "*"
 files = [
-    {file = "PyDispatcher-2.0.6.tar.gz", hash = "sha256:3d7e4f43c70000a1dca31f92694e99d0101934fa6eab5d5455a758858d86df95"},
+    {file = "PyDispatcher-2.0.7-py3-none-any.whl", hash = "sha256:96543bea04115ffde08f851e1d45cacbfd1ee866ac42127d9b476dc5aefa7de0"},
+    {file = "PyDispatcher-2.0.7.tar.gz", hash = "sha256:b777c6ad080dc1bad74a4c29d6a46914fa6701ac70f94b0d66fbcfde62f5be31"},
 ]
+
+[package.extras]
+dev = ["tox"]
 
 [[package]]
 name = "pydocstyle"
@@ -1376,6 +1383,7 @@ files = [
 [package.dependencies]
 commonmark = ">=0.9.0,<0.10.0"
 pygments = ">=2.6.0,<3.0.0"
+typing-extensions = {version = ">=4.0.0,<5.0", markers = "python_version < \"3.9\""}
 
 [package.extras]
 jupyter = ["ipywidgets (>=7.5.1,<8.0.0)"]
@@ -1817,5 +1825,5 @@ testing = ["coverage (>=5.0.3)", "zope.event", "zope.testing"]
 
 [metadata]
 lock-version = "2.0"
-  python-versions = "3.11.*"
-content-hash = "4ea4a52427eb8de5c38c039594cb5bbdb9cec989f09edcdc04bad360c3e52097"
+  python-versions = ">=3.8,<3.10"
+content-hash = "21bb4cfd99929008cf4fc887e3f088ae811009d11cd75298eaf38d2663f519d7"

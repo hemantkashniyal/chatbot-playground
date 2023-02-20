@@ -25,7 +25,7 @@ readme = 'README.md'
   include = "chatbot_common"
 
   [tool.poetry.dependencies]
-  python = "3.11.*"
+  python = ">=3.8,<3.10"
 
   [tool.poetry.group.dev.dependencies]
   flake8 = "4.0.1"

@@ -25,7 +25,7 @@ readme = "README.md"
   include = "chatbot_data_processing"
 
   [tool.poetry.dependencies]
-  python = "3.11.*"
+  python = ">=3.8,<3.10"
   pendulum = "^2.1.2"
 
   [tool.poetry.group.dev.dependencies]

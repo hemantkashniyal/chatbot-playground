@@ -24,7 +24,7 @@ tools_cli = "chatbot_tools.index:app"
   include = "chatbot_tools"
 
   [tool.poetry.dependencies]
-  python = "3.11.*"
+  python = ">=3.8,<3.10"
   typer = {extras = ["all"], version = "^0.7.0"}
   scrapy = "^2.8.0"
   extruct = "^0.14.0"
