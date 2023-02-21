@@ -32,7 +32,7 @@ services:
     networks:
       - rasa-network
     ports:
-      - "8000:8000"
+      - "8030:8030"
 
   redis:
     image: redis:6.2-alpine
@@ -44,7 +44,7 @@ services:
       - "6379:6379"
     command: redis-server --save 20 1 --loglevel warning --requirepass eYVX7EwVmmxKPCDmwMtyKVge8oLd2t81
     volumes:
-      - "./redis_data:/data"
+      - "./redis-data:/data"
 
   redis-commander:
     container_name: redis-commander

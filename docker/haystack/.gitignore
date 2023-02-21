@@ -1,3 +1,8 @@
 .DS_Store
-redis_data/
+redis-data/
 postgres-data/
+elasticsearch-data/
+weaviate-data/
+
+*.zip
+article_txt_countries_and_capitals/
