@@ -1,23 +1,38 @@
 version: "3"
 services:
   haystack-api:
-    image: "deepset/haystack-cpu:latest"
+    image: "deepset/haystack:cpu"
     volumes:
-      - ./:/opt/pipelines
+      # - ./pipeline/document-search.haystack-pipeline.yml:/opt/pipelines/pipeline/document-search.haystack-pipeline.yml
+      - ./pipeline/document-search.haystack-pipeline.new.yml:/opt/pipelines/pipeline/document-search.haystack-pipeline.yml
+      - ../../haystack/haystack:/opt/venv/lib/python3.10/site-packages/haystack
+      - ../../haystack/rest_api/rest_api:/opt/venv/lib/python3.10/site-packages/rest_api
+      - ./pipeline/:/opt/venv/lib/python3.10/site-packages/rest_api/pipeline/
+      - haystack-api-cache:/root/.cache:rw
     networks:
       - app-network
     ports:
       - 8000:8000
     restart: on-failure
     environment:
+      - PYTHONDONTWRITEBYTECODE=true
+      - HAYSTACK_TELEMETRY_ENABLED=false
       - DOCUMENTSTORE_PARAMS_HOST=elasticsearch
       # - PIPELINE_YAML_PATH=/opt/pipelines/pipelines.haystack-pipeline.yml
-      - PIPELINE_YAML_PATH=/opt/pipelines/document-search.haystack-pipeline.yml
+      - PIPELINE_YAML_PATH=/opt/pipelines/pipeline/document-search.haystack-pipeline.yml
       - TOKENIZERS_PARALLELISM=false
       # Uncomment the following line to customise how much time (in seconds) a worker can spend serving a request
       # before it times out. This should include the time required to cache the models and setup the pipelines.
 
       # - GUNICORN_CMD_ARGS="--timeout=3000"
+    # command: "sleep infinity"
+    # command: "pip install tiktoken && gunicorn rest_api.application:app -b 0.0.0.0 -k uvicorn.workers.UvicornWorker --workers 1 --timeout 1000"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        pip install tiktoken
+        gunicorn rest_api.application:app -b 0.0.0.0 -k uvicorn.workers.UvicornWorker --workers 1 --timeout 1000
     depends_on:
       elasticsearch:
         condition: service_healthy
@@ -105,6 +120,9 @@ services:
       timeout: 3s
       retries: 5
     restart: unless-stopped
+
+volumes:
+  haystack-api-cache:
 
 networks:
   app-network:
